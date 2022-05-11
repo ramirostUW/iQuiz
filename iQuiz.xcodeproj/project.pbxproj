@@ -16,6 +16,7 @@
 		DB6F71C0282B110D007D4F44 /* iQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F71BF282B110D007D4F44 /* iQuizTests.swift */; };
 		DB6F71CA282B110D007D4F44 /* iQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F71C9282B110D007D4F44 /* iQuizUITests.swift */; };
 		DB6F71CC282B110D007D4F44 /* iQuizUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F71CB282B110D007D4F44 /* iQuizUITestsLaunchTests.swift */; };
+		DB6F71D9282B4591007D4F44 /* TableDataAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F71D8282B4591007D4F44 /* TableDataAndDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		DB6F71C5282B110D007D4F44 /* iQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6F71C9282B110D007D4F44 /* iQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iQuizUITests.swift; sourceTree = "<group>"; };
 		DB6F71CB282B110D007D4F44 /* iQuizUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iQuizUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DB6F71D8282B4591007D4F44 /* TableDataAndDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataAndDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				DB6F71B1282B110D007D4F44 /* Assets.xcassets */,
 				DB6F71B3282B110D007D4F44 /* LaunchScreen.storyboard */,
 				DB6F71B6282B110D007D4F44 /* Info.plist */,
+				DB6F71D8282B4591007D4F44 /* TableDataAndDelegate.swift */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6F71AD282B110A007D4F44 /* ViewController.swift in Sources */,
+				DB6F71D9282B4591007D4F44 /* TableDataAndDelegate.swift in Sources */,
 				DB6F71A9282B110A007D4F44 /* AppDelegate.swift in Sources */,
 				DB6F71AB282B110A007D4F44 /* SceneDelegate.swift in Sources */,
 			);
