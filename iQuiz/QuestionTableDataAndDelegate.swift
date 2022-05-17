@@ -1,21 +1,28 @@
+//
+//  QuestionTableDataAndDelegate.swift
+//  iQuiz
+//
+//  Created by Matthew Karyadi on 5/16/22.
+//
+
 import UIKit
 
-class TableDataAndDelegate : NSObject, UITableViewDataSource, UITableViewDelegate {
-    weak var vc : ViewController?
+class QuestionTableDataAndDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+    weak var vc : QuestionVC?
     
     let quizLabels : [String] = [
-        "Math", "Science", "Marvel Superheroes"
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
     ]
     
-    let descriptions: [String] = [
-        "Do your answers add up?", "Bill Nye's favorite!", "Super quiz for super fans"
+    var descriptions: [String] = [
+        "First Answer", "Second Answer", "Third Answer", "Fourth Answer"
     ]
 
     /*
      UITableViewDataSource methods
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return quizLabels.count
+        return descriptions.count
     }
 
     
@@ -36,15 +43,14 @@ class TableDataAndDelegate : NSObject, UITableViewDataSource, UITableViewDelegat
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        vc!.subMittedAnswer = descriptions[indexPath.row]
+        vc!.correctAnswer = "Third Answer"
+        
         /*
-        let alert = UIAlertController(title: "Selected!", message: "You selected \(quizLabels[indexPath.row])!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
-        vc!.present(alert, animated: true, completion: nil)
-         */
         let newViewController = vc!.storyboard?.instantiateViewController(withIdentifier: "questionVC") as! QuestionVC
-        let selectedLabel = quizLabels[indexPath.row]
-        newViewController.quizAdmin = HardCodedQuizAdmin(selectedLabel)
+
         vc!.present(newViewController, animated: true, completion: nil)
+         */
 
     }
 
