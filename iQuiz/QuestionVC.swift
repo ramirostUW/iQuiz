@@ -17,7 +17,7 @@ class QuestionVC: UIViewController {
     var subMittedAnswer: String = "";
     var correctAnswer: String = "";
     
-    var quizAdmin: HardCodedQuizAdmin?
+    var quizAdmin: JSONQuizAdmin?
     
     override func viewDidLoad() {
         super.viewDidLoad()

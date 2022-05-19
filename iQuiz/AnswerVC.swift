@@ -11,7 +11,7 @@ class AnswerVC: UIViewController {
 
     var correctAnswerString: String = ""
     var userAnswerString: String = ""
-    var quizAdmin: HardCodedQuizAdmin?
+    var quizAdmin: JSONQuizAdmin?
     
     @IBOutlet weak var correctAnswerLabel: UILabel!
     @IBOutlet weak var userAnswerLabel: UILabel!
@@ -36,7 +36,7 @@ class AnswerVC: UIViewController {
     }
     
     @IBAction func submitPressed(_ sender: Any) {
-        if(quizAdmin!.currentQuestion == quizAdmin!.currentQuiz.listOfQuestions.count){
+        if(quizAdmin!.currentQuestion == quizAdmin!.currentQuiz!.listOfQuestions.count){
             let newViewController = self.storyboard?.instantiateViewController(withIdentifier: "finishedVC") as! FinishedVC
             newViewController.quizAdmin = quizAdmin!
             self.present(newViewController, animated: true, completion: nil)

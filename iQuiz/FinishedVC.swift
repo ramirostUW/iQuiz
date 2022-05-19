@@ -11,15 +11,15 @@ class FinishedVC: UIViewController {
 
     @IBOutlet weak var finishedBlurbLabel: UILabel!
     @IBOutlet weak var gradeLabel: UILabel!
-    var quizAdmin: HardCodedQuizAdmin?
+    var quizAdmin: JSONQuizAdmin?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         finishedBlurbLabel.text = "You finished your quiz!"
-        if(quizAdmin!.correctSoFar == quizAdmin!.currentQuiz.listOfQuestions.count){
+        if(quizAdmin!.correctSoFar == quizAdmin!.currentQuiz!.listOfQuestions.count){
             finishedBlurbLabel.text = "Perfect!"
         }
-        gradeLabel.text = "You answered " + String(quizAdmin!.correctSoFar) + " out of " + String(quizAdmin!.currentQuiz.listOfQuestions.count) + " correctly!";
+        gradeLabel.text = "You answered " + String(quizAdmin!.correctSoFar) + " out of " + String(quizAdmin!.currentQuiz!.listOfQuestions.count) + " correctly!";
         // Do any additional setup after loading the view.
     }
     

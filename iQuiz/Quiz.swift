@@ -6,12 +6,17 @@
 //
 
 import Foundation
+import UIKit
 
 class Quiz {
-   var listOfQuestions: [Question]!
-   init(_ myQuestions: [Question]!) {
-       self.listOfQuestions = myQuestions;
-   }
+    var listOfQuestions: [Question]!
+    var description: String!
+    var title: String!
+    init(_ myQuestions: [Question]!, _ description: String, _ title: String) {
+        self.listOfQuestions = myQuestions;
+        self.description = description;
+        self.title = title;
+    }
 }
 
 class Question {
@@ -36,7 +41,7 @@ class HardCodedQuizAdmin {
                                    ["Strange", "Dr.", "Last", "Name"], 0)
         let thirdMarvel = Question("What is Dr. Strange's power?",
                                    ["Magic", "medicine", "ios development", "friendship"], 0)
-        let marvelQuiz = Quiz([firstMarvel, secondMarvel, thirdMarvel]);
+        let marvelQuiz = Quiz([firstMarvel, secondMarvel, thirdMarvel], "marvel quiz", "marvel");
         
         let firstMath = Question("What is 1+1?",
                                 ["one", "two", "three", "four"], 1)
@@ -44,7 +49,7 @@ class HardCodedQuizAdmin {
                                   ["one", "two", "three", "four"], 2)
         let thirdMath = Question("What is 1+3?",
                                  ["one", "two", "three", "four"], 3)
-        let mathQuiz = Quiz([firstMath, secondMath, thirdMath]);
+        let mathQuiz = Quiz([firstMath, secondMath, thirdMath], "math quiz", "Math");
         
         let firstScience = Question("Which of the following is a state of matter?",
                                 ["gas", "gravity", "medicine", "Dr. Strange"], 0)
@@ -52,7 +57,7 @@ class HardCodedQuizAdmin {
                                 ["gas", "gravity", "medicine", "Dr. Strange"], 1)
         let ThirdScience = Question("Which is a branch of science?",
                                 ["gas", "gravity", "medicine", "Dr. Strange"], 2)
-        let scienceQuiz = Quiz([firstScience, secondScience, ThirdScience]);
+        let scienceQuiz = Quiz([firstScience, secondScience, ThirdScience], "science quiz", "Sience");
         
         
         if(quizTopic == "Math"){
