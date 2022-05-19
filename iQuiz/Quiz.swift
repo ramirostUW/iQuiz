@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Quiz {
+class Quiz: Codable {
     var listOfQuestions: [Question]!
     var description: String!
     var title: String!
@@ -19,7 +19,7 @@ class Quiz {
     }
 }
 
-class Question {
+class Question: Codable  {
     var correctAnswer: Int!
     var listOfAnswers: [String]!
     var question: String;

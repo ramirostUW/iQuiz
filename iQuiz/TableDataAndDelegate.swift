@@ -1,12 +1,29 @@
 import UIKit
 import Foundation
+import Network
 class JSONQuizAdmin {
     var currentQuiz: Quiz?
     var currentQuestion: Int!
     var correctSoFar: Int!
     var possibleQuizes: [Quiz]!
+    var monitor: NWPathMonitor?
     
     init(){
+        
+        monitor = NWPathMonitor()
+        monitor!.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                //print("We have wifi!")
+            } else {
+                //print("No wifi here")
+            }
+
+            print(path.isExpensive)
+        }
+        let queue = DispatchQueue(label: "Monitor")
+        monitor!.start(queue: queue)
+        
+        
         let firstMarvel = Question("What is Dr. Strange's first Name?",
                                    ["Stephen", "Dr.", "First", "Name"], 0)
         let secondMarvel = Question("What is Dr. Strange's last Name?",
@@ -31,14 +48,21 @@ class JSONQuizAdmin {
                                 ["gas", "gravity", "medicine", "Dr. Strange"], 2)
         let scienceQuiz = Quiz([firstScience, secondScience, ThirdScience], "science quiz", "Science");
         
-        possibleQuizes = [mathQuiz, marvelQuiz, scienceQuiz]
+        possibleQuizes = []
         //possibleQuizes = getJSONQuestions()
         
         correctSoFar = 0;
         
         currentQuestion = 0;
     }
-    
+    func checkWifi() -> Bool{
+        if monitor!.currentPath.status == .satisfied {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     func chooseQuiz(_ quizTitle: String){
         for potentialQuiz in possibleQuizes{
             if(quizTitle == potentialQuiz.title){
@@ -72,54 +96,6 @@ class JSONQuizAdmin {
             returnVal.append(potentialQuiz.description)
         }
         return returnVal;
-    }
-    
-    func getJSONQuestions(_ homePageTable: ViewController!){
-        var greeting = "Hello, playground"
-
-        let url = URL(string: "https://tednewardsandbox.site44.com/questions.json")
-        let session = URLSession.shared.dataTask(with: url!) {
-            data, response, error in
-            
-            
-            if response != nil {
-                if (response! as! HTTPURLResponse).statusCode != 200 {
-                    print("Something went wrong! \(error)")
-                }
-            }
-            
-            let httpResponse = response! as! HTTPURLResponse
-            
-            print(data)
-            
-            do {
-                let questions = try JSONSerialization.jsonObject(with: data!)
-                print(questions)
-                if let arr = questions as? [[String: Any]] {
-                    var newQuizzes: [Quiz] = []
-                    for quizJSON in arr {
-                        let title = quizJSON["title"] as? String
-                        let desc = quizJSON["desc"] as? String
-                        let questionsArrJSON = quizJSON["questions"] as? [[String: Any]]
-                        var questionArray : [Question] = []
-                        for questionsJSON in questionsArrJSON! {
-                            let text = questionsJSON["text"] as! String
-                            let answers = questionsJSON["answers"] as! [String]
-                            let correct = Int(questionsJSON["answer"] as! String)! - 1
-                            questionArray.append(Question(text, answers, correct))
-                        }
-                        newQuizzes.append(Quiz(questionArray, desc!, title!))
-                    }
-                    self.possibleQuizes = newQuizzes;
-                }
-            }
-            catch {
-                print("Something went boom")
-            }
-            homePageTable.reload()
-        }
-        session.resume()
-
     }
 }
 
@@ -169,6 +145,7 @@ class TableDataAndDelegate : NSObject, UITableViewDataSource, UITableViewDelegat
         vc!.present(newViewController, animated: true, completion: nil)
 
     }
+    
     
     
 
